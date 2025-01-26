@@ -86,6 +86,7 @@ IDirect3DTexture9* TryLoadCustomTexture(std::string path) {
 }
 
 void ReplaceTextureWithCustom(DevTexture* pTexture, const char* path) {
+	if (!pTexture) return;
 	if (auto texture = TryLoadCustomTexture(path)) {
 		if (pTexture->pD3DTexture) pTexture->pD3DTexture->Release();
 		pTexture->pD3DTexture = texture;
@@ -94,6 +95,7 @@ void ReplaceTextureWithCustom(DevTexture* pTexture, const char* path) {
 }
 
 void ReplaceTextureWithCustom(DevTexture* pTexture) {
+	if (!pTexture) return;
 	return ReplaceTextureWithCustom(pTexture, pTexture->sPath.Get());
 }
 
